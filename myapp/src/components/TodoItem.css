@@ -1,0 +1,28 @@
+.todo-item {
+    display: flex;
+    padding: 8px 16px;
+    align-items: center; /* 세로 가운데 정렬 */
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  
+  .todo-item:hover {
+    background: #fff1ff;
+  }
+  
+ 
+  .todo-item + .todo-item {
+    border-top: 1px solid #f1f3f5;
+  }
+  
+  
+  
+  .todo-text {
+    padding: 8px 8px;
+  }
+  
+  .checked {
+    text-decoration: line-through;
+    color: #adb5bd;
+  }

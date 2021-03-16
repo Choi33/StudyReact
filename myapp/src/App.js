@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TodoListTemplate from "./components/TodoListTemplate";
 import Form from "./components/Form";
 import TodoItemList from "./components/TodoItemList";
 
 function App() {
   // const [xxx, setXxx] = useState(initialValue);
-  const [todos, setTodos] = useState([
-    { id: 0, text: "리액트 소개", checked: false },
-    { id: 1, text: "리액트 소개", checked: true },
-    { id: 2, text: "리액트.......", checked: false },
-  ]);
+  console.log("App 함수가 실행됐습니다.");
+  localStorage.getItem("todos");
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {}, []);
 
   // const handleCreate = () => {
   //   // this.setState({input: '어쩌구'}); // 클래스형 컴포넌트
@@ -33,14 +33,21 @@ function App() {
 
   const addTodo = (text) => {
     setTodos((prevTodos) => {
-      return prevTodos.concat({
-        id: prevTodos.length === 0 ? 0 : prevTodos[prevTodos.length - 1].id + 1,
+      const id =
+        prevTodos.length === 0 ? 0 : prevTodos[prevTodos.length - 1].id + 1;
+      const add = {
         text,
         checked: false,
+      };
+      localStorage.setItem(id, JSON.stringify(add));
+      console.log(add);
+      return prevTodos.concat({
+        id,
+        add,
       });
     });
   };
-
+  console.log(todos);
   const toggleTodo = (element) => {
     setTodos((prevTodos) => {
       const copiedTodos = [...prevTodos];

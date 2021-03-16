@@ -30,10 +30,10 @@ class TodoItem extends Component {
         >
           &times;
         </div>
-        <div className={`todo-text ${todo.checked && "checked"}`}>
-          <div>{todo.text}</div>
+        <div className={`todo-text ${todo.add.checked && "checked"}`}>
+          <div>{todo.add.text}</div>
         </div>
-        {todo.checked && <div className="check-mark">✓</div>}
+        {todo.add.checked && <div className="check-mark">✓</div>}
       </div>
     );
   }

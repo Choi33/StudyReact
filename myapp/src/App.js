@@ -47,6 +47,7 @@ function App() {
       });
     });
   };
+
   console.log(todos);
   const toggleTodo = (element) => {
     setTodos((prevTodos) => {
@@ -62,8 +63,10 @@ function App() {
   const removeTodo = (element) => {
     setTodos((prevTodos) => {
       // return prevTodos.filter((todo) => todo !== element);
+
       const temp = [...prevTodos];
       const index = temp.indexOf(element);
+      localStorage.removeItem(index);
       temp.splice(index, 1);
       return temp;
     });

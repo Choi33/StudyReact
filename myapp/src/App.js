@@ -5,11 +5,20 @@ import TodoItemList from "./components/TodoItemList";
 
 function App() {
   // const [xxx, setXxx] = useState(initialValue);
-  console.log("App 함수가 실행됐습니다.");
-  localStorage.getItem("todos");
   const [todos, setTodos] = useState([]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const len = localStorage.length;
+    for (let i = 0; i < len; i++) {
+      const list = localStorage.getItem(i);
+      const pastTodo = {
+        i,
+        list,
+      };
+
+      console.log(pastTodo);
+    }
+  }, []);
 
   // const handleCreate = () => {
   //   // this.setState({input: '어쩌구'}); // 클래스형 컴포넌트
@@ -63,7 +72,6 @@ function App() {
   const removeTodo = (element) => {
     setTodos((prevTodos) => {
       // return prevTodos.filter((todo) => todo !== element);
-
       const temp = [...prevTodos];
       const index = temp.indexOf(element);
       localStorage.removeItem(index);

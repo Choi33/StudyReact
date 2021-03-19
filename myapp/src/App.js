@@ -5,20 +5,26 @@ import TodoItemList from "./components/TodoItemList";
 
 function App() {
   // const [xxx, setXxx] = useState(initialValue);
-  const [todos, setTodos] = useState([]);
 
-  useEffect(() => {
-    const len = localStorage.length;
-    for (let i = 0; i < len; i++) {
-      const list = localStorage.getItem(i);
-      const pastTodo = {
-        i,
-        list,
-      };
+  // let pastTodo = {};
+  // useEffect(() => {
+  //   const len = localStorage.length;
+  //   for (let i = 0; i < len; i++) {
+  //     let add = localStorage.getItem(i);
+  //     let id = localStorage.key(i);
+  //     console.log(add, id);
+  //     pastTodo = { id, add };
+  //     console.log("테스트", pastTodo);
+  //   }
+  // });
+  // console.log("local", pastTodo);
 
-      console.log(pastTodo);
-    }
-  }, []);
+  const [todos, setTodos] = useState(() => {
+    const ret = JSON.parse(localStorage.getItem("todos"));
+    if (ret) return ret;
+    localStorage.setItem("todos", "[]");
+    return [];
+  });
 
   // const handleCreate = () => {
   //   // this.setState({input: '어쩌구'}); // 클래스형 컴포넌트
@@ -48,23 +54,23 @@ function App() {
         text,
         checked: false,
       };
-      localStorage.setItem(id, JSON.stringify(add));
-      console.log(add);
-      return prevTodos.concat({
+      // localStorage.setItem(id, JSON.stringify(add));
+      const snapshot = prevTodos.concat({
         id,
         add,
       });
+      localStorage.setItem("todos", JSON.stringify(snapshot));
+      return snapshot;
     });
   };
 
-  console.log(todos);
   const toggleTodo = (element) => {
     setTodos((prevTodos) => {
       const copiedTodos = [...prevTodos];
       const idx = copiedTodos.indexOf(element);
-      // console.log("찾은 idx: ", idx);
       if (idx < 0) return prevTodos; // 아무 일도 없음.
-      copiedTodos[idx].checked = !copiedTodos[idx].checked;
+      copiedTodos[idx].add.checked = !copiedTodos[idx].add.checked;
+      localStorage.setItem("todos", JSON.stringify(copiedTodos));
       return copiedTodos;
     });
   };
@@ -74,8 +80,8 @@ function App() {
       // return prevTodos.filter((todo) => todo !== element);
       const temp = [...prevTodos];
       const index = temp.indexOf(element);
-      localStorage.removeItem(index);
       temp.splice(index, 1);
+      localStorage.setItem("todos", JSON.stringify(temp));
       return temp;
     });
   };

@@ -14,6 +14,7 @@ class TodoItem extends Component {
   render() {
     // onRemove
     const { todo, toggleTodo, removeTodo } = this.props;
+    console.log(todo.add.checked);
     return (
       <div
         className="todo-item"

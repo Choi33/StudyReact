@@ -4,7 +4,7 @@ import "./TodoItem.css";
 class TodoItem extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    // console.log(props);
   }
 
   // componentDidMount() {
@@ -14,7 +14,7 @@ class TodoItem extends Component {
   render() {
     // onRemove
     const { todo, toggleTodo, removeTodo } = this.props;
-    console.log(todo.add.checked);
+    // console.log(todo.add.checked);
     return (
       <div
         className="todo-item"

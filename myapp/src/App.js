@@ -46,6 +46,28 @@ function App() {
   //   });
   // };
 
+  useEffect(()=>{
+    const handler=(event)=>{
+      
+      if (event.storageArea !== localStorage) return
+      if(event.key=="todos"){
+        let newAry = JSON.parse(event.newValue);
+        // console.log(event);
+        setTodos(() => {
+          return newAry;
+        });
+      }
+      
+    }
+
+    window.addEventListener('storage',handler);
+
+    return () => {
+      window.removeEventListener('storage',handler);
+    }
+  },[])
+
+
   const addTodo = (text) => {
     setTodos((prevTodos) => {
       const id =

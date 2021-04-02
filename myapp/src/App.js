@@ -48,7 +48,6 @@ function App() {
 
   useEffect(()=>{
     const handler=(event)=>{
-      
       if (event.storageArea !== localStorage) return
       if(event.key=="todos"){
         let newAry = JSON.parse(event.newValue);

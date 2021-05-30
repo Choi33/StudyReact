@@ -4,17 +4,10 @@ import "./TodoItem.css";
 class TodoItem extends Component {
   constructor(props) {
     super(props);
-    // console.log(props);
   }
 
-  // componentDidMount() {
-  //   console.log(props);
-  // }
-
   render() {
-    // onRemove
     const { todo, toggleTodo, removeTodo } = this.props;
-    // console.log(todo.add.checked);
     return (
       <div
         className="todo-item"
